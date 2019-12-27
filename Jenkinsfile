@@ -3,13 +3,9 @@ node('master') {
         checkout scm
     }
     
-    stage('Run tests') {
+    stage('Clean and Compile') {
         try {
-            sh 'ls -lR'
-            echo 'Clean and compile...'
             sh './mvnw clean compile'
-            echo 'Clean and compile executed'
-            sh 'ls -lR'
         } finally {
             archiveArtifacts 'target/**'
         }
